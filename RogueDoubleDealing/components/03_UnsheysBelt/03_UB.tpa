@@ -1,0 +1,8 @@
+PRINT ~Installing Component: Rogue Double Dealing - Unshey's Belt~
+
+COPY_EXISTING ~UNSHEY.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    // Pas w kieszeni Unshey po oddaniu zadania
+    REPLACE_TEXTUALLY CASE_INSENSITIVE ~TakePartyItem("BELT04")~ ~TakePartyItem("BELT04") DestroyItem("BELT04") GiveItemCreate("BELT04",Myself,1,0,0)~
+  END
+BUT_ONLY

@@ -1,0 +1,8 @@
+PRINT ~Installing Component: Rogue Double Dealing - Golden Pantaloons~
+
+COPY_EXISTING ~NOBL9.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    // Pantalony w kieszeni szlachcica po oddaniu zadania
+    REPLACE_TEXTUALLY CASE_INSENSITIVE ~TakePartyItem("MISC47")~ ~TakePartyItem("MISC47") DestroyItem("MISC47") GiveItemCreate("MISC47",Myself,1,0,0)~
+  END
+BUT_ONLY

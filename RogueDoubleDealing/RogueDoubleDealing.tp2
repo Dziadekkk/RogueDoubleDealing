@@ -1,0 +1,67 @@
+BACKUP ~RogueDoubleDealing/backup~
+AUTHOR ~Dziadek~
+VERSION ~1.0~
+README ~RogueDoubleDealing/tra/%LANGUAGE%/readme-rdd.txt~
+
+// 1. DEKLARACJA JĘZYKÓW
+AUTO_TRA ~RogueDoubleDealing/tra/%LANGUAGE%~
+
+LANGUAGE ~English~ ~en_US~ ~RogueDoubleDealing/tra/en_US/setup.tra~
+LANGUAGE ~Polish~ ~pl_PL~ ~RogueDoubleDealing/tra/pl_PL/setup.tra~
+
+
+// ============================================================================
+// KOMPONENT 1: WĄTEK NEKROMANTÓW (ARKION I NEMPHRE) NQR
+// ============================================================================
+BEGIN @1 
+LABEL ~RDD_NQR~
+DESIGNATED 1
+
+// Sprawdzenie platformy przeniesione bezpośrednio tutaj
+REQUIRE_PREDICATE (GAME_IS ~bgee eet~) @100
+
+// Zabezpieczenie: Blokada, jeśli zainstalowano już samodzielny mod NQR
+REQUIRE_PREDICATE (NOT MOD_IS_INSTALLED ~NecromancersQuestRestored.tp2~ ~0~) @101
+
+LOAD_TRA ~RogueDoubleDealing/tra/%LANGUAGE%/NQR.tra~
+INCLUDE ~RogueDoubleDealing/components/01_NecromancersQuestRestored/01_NQR.tpa~
+
+
+// ============================================================================
+// KOMPONENT 2: ZŁOTE PANTALONY
+// ============================================================================
+BEGIN @2 
+LABEL ~RDD_GP~
+DESIGNATED 2
+
+// Sprawdzenie platformy przeniesione bezpośrednio tutaj
+REQUIRE_PREDICATE (GAME_IS ~bgee eet~) @100
+
+INCLUDE ~RogueDoubleDealing/components/02_GoldenPantaloons/02_GP.tpa~
+
+
+// ============================================================================
+// KOMPONENT 3: PAS UNSHEY
+// ============================================================================
+BEGIN @3 
+LABEL ~RDD_UB~
+DESIGNATED 3
+
+// Sprawdzenie platformy przeniesione bezpośrednio tutaj
+REQUIRE_PREDICATE (GAME_IS ~bgee eet~) @100
+
+INCLUDE ~RogueDoubleDealing/components/03_UnsheysBelt/03_UB.tpa~
+
+// ============================================================================
+// KOMPONENT 4: BUTY ZHURLONGA
+// ============================================================================
+//BEGIN @4 
+//LABEL ~RDD_ZH~
+//DESIGNATED 4
+
+// Sprawdzenie platformy przeniesione bezpośrednio tutaj
+//REQUIRE_PREDICATE (GAME_IS ~bgee eet~) @100
+
+// Wywołanie pliku .tpa z dedykowanego podfolderu
+//INCLUDE ~RogueDoubleDealing/components/04_ZhurlongsBoots/04_ZB.tpa~
+

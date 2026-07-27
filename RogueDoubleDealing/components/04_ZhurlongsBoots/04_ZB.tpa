@@ -1,0 +1,8 @@
+PRINT ~Installing Component: Rogue Double Dealing - Zhurlong's Boots~
+
+COPY_EXISTING ~ZHURLO.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    // Buty w kieszeni Zhurlonga po oddaniu zadania - to nie wystarczy - po oddaniu są ubierane na slot BUTY - rezygnuję z tego komonentu, można dość szybko znaleść drugie
+    REPLACE_TEXTUALLY CASE_INSENSITIVE ~TakePartyItem("boot02zh")~ ~TakePartyItem("boot02zh") DestroyItem("boot02zh") GiveItemCreate("boot02zh",Myself,1,0,0)~
+  END
+BUT_ONLY

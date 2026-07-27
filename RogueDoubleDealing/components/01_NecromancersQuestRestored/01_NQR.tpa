@@ -1,0 +1,26 @@
+PRINT ~Instalowanie komponentu: Podwojna Gra Lotra - Watek Nekromantow~
+
+// Dynamiczny wybór ID wpisu w dzienniku (BG:EE vs EET)
+ACTION_IF GAME_IS ~eet~ BEGIN
+  OUTER_SET arkion_quest_strref = 226853  
+END ELSE BEGIN
+  OUTER_SET arkion_quest_strref = 26853   
+END
+
+COPY_EXISTING ~NEMPHR.DLG~ ~override~
+  DECOMPILE_AND_PATCH BEGIN
+    PATCH_IF GAME_IS ~eet~ BEGIN
+      SET journal_id = 227321
+    END ELSE BEGIN
+      SET journal_id = 27321
+    END
+    // Usuwamy kasowanie wpisu z dziennika
+    EVAL REPLACE_TEXTUALLY CASE_INSENSITIVE ~EraseJournalEntry(%journal_id%)~ ~~
+    
+    // Wkładamy amulet Arkiona do kieszeni Nemphre po oddaniu zadania
+    REPLACE_TEXTUALLY CASE_INSENSITIVE ~TakePartyItem("OHAMUL13")~ ~TakePartyItem("OHAMUL13") DestroyItem("OHAMUL13") GiveItemCreate("OHAMUL13",Myself,1,0,0)~
+  END
+BUT_ONLY
+
+// Kompilacja pijackiego skryptu Arkiona z nowego, dedykowanego podfolderu komponentu
+COMPILE ~RogueDoubleDealing/components/01_NecromancersQuestRestored/d/hic.d~ EVALUATE_BUFFER
